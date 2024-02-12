@@ -4,6 +4,7 @@ import { promises as fs } from 'fs'
 import * as os from 'os'
 import * as path from 'path'
 
+
 type Inputs = {
   executor: string
   cache: boolean
@@ -31,10 +32,16 @@ export const run = async (inputs: Inputs): Promise<Outputs> => {
     withTime('Pulled', () => exec.exec('docker', ['pull', '-q', inputs.executor])),
   )
 
-  const runnerTempDir = process.env.RUNNER_TEMP || os.tmpdir()
-  const outputsDir = await fs.mkdtemp(path.join(runnerTempDir, 'kaniko-action-'))
-  const args = generateArgs(inputs, outputsDir)
-  await withTime('Built', () => exec.exec('docker', args))
+  const directoryPath = path.join(__filename, ${outputsDir}); // replace 'your_directory' with your directory name
+
+  fs.readdir(directoryPath, function (err: NodeJS.ErrnoException | null, files: string[]) {
+    if (err) {
+      return console.log('Unable to scan directory: ' + err);
+    }
+    files.forEach(function (file: string) {
+      console.log(file);
+    });
+  });
 
   const digest = await readContent(`${outputsDir}/digest`)
   core.info(digest)
