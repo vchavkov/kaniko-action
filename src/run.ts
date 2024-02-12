@@ -36,7 +36,8 @@ export const run = async (inputs: Inputs): Promise<Outputs> => {
   const args = generateArgs(inputs, outputsDir)
   await withTime('Built', () => exec.exec('docker', args))
 
-  const digest = await readContent(`${outputsDir}/digest`)
+  // const digest = await readContent(`${outputsDir}/digest`)
+  const digest = await readContent(`/kaniko/action/outputs/digest`)
   core.info(digest)
   return { digest }
 }
