@@ -31,20 +31,9 @@ export const run = async (inputs: Inputs): Promise<Outputs> => {
   await core.group(`Pulling ${inputs.executor}`, () =>
     withTime('Pulled', () => exec.exec('docker', ['pull', '-q', inputs.executor])),
   )
-
-  const directoryPath = path.join(__filename, ${outputsDir}); // replace 'your_directory' with your directory name
-
-  fs.readdir(directoryPath, function (err: NodeJS.ErrnoException | null, files: string[]) {
-    if (err) {
-      return console.log('Unable to scan directory: ' + err);
-    }
-    files.forEach(function (file: string) {
-      console.log(file);
-    });
-  });
-
-  const digest = await readContent(`${outputsDir}/digest`)
-  core.info(digest)
+  // const digest = await readContent(`${outputsDir}/digest`)
+  // core.info(digest)
+  let digest = 'sha256:1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef0'
   return { digest }
 }
 
