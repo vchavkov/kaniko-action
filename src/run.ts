@@ -31,7 +31,7 @@ export const run = async (inputs: Inputs): Promise<Outputs> => {
   await core.group(`Pulling ${inputs.executor}`, () =>
     withTime('Pulled', () => exec.exec('docker', ['pull', '-q', inputs.executor])),
   )
-  const digest = await readContent(`${outputsDir}/digest`)
+  const digest = await readContent("${outputsDir}/digest")
   core.info(digest)
   return { digest }
 }
