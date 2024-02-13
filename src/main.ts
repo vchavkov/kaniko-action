@@ -19,7 +19,7 @@ const main = async (): Promise<void> => {
     tags: core.getMultilineInput('tags'),
     target: core.getInput('target'),
   })
-  core.setOutput('digest', outputs.digest)
+  // core.setOutput('digest', outputs.digest)
 }
 
 main().catch((e: Error) => {
