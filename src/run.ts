@@ -65,7 +65,7 @@ export const generateArgs = (inputs: Inputs, outputsDir: string): string[] => {
     // kaniko args
     '--context',
     'dir:///kaniko/action/context/',
-    '--digest-file',
+    '--image-name-with-digest-file',
     '/kaniko/action/outputs/digest',
   ]
 
